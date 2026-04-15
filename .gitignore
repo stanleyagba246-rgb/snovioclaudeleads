@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+dashboard/node_modules/
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Generated PDFs
+pdfs/
+
+# Build outputs
+dashboard/.next/
+dashboard/out/
+dashboard/tsconfig.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local cache
+.cache/
