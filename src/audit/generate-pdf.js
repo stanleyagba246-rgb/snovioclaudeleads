@@ -81,9 +81,7 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
     bgFill(doc, C.dark, W, H);
     doc.rect(0, 0, W, 4).fill(C.accent);
 
-    // Agency label
-    doc.font('Helvetica').fontSize(8).fillColor(C.accent)
-      .text('COZY AUTOMATION', PAD, 32, { characterSpacing: 2.5 });
+    // (agency label removed)
 
     // Headline — exact copy from doc
     const headline =
@@ -107,9 +105,7 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
       doc.font('Helvetica').fontSize(12).fillColor('#9CA3AF').text(prepLine, PAD, y1);
       y1 += 22;
     }
-    doc.font('Helvetica').fontSize(11).fillColor(C.muted)
-      .text('By Agba Stanley  |  cozyautomation.com', PAD, y1);
-    y1 += 48;
+    y1 += 24;
 
     // Profile pic
     const picPath = resolve(ASSETS, 'profile-pic 6.png');
@@ -120,9 +116,7 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
       doc.image(picPath, PAD, y1, { width: picSize, height: picSize });
       doc.restore();
       doc.font('Helvetica-Bold').fontSize(13).fillColor(C.white)
-        .text('Agba Stanley', PAD + picSize + 14, y1 + 10);
-      doc.font('Helvetica').fontSize(10).fillColor(C.muted)
-        .text('cozyautomation.com', PAD + picSize + 14, y1 + 28);
+        .text('Made by Agba Stanley', PAD + picSize + 14, y1 + 18);
     }
 
     // Bottom strip
@@ -143,7 +137,7 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
 
     // Section label
     doc.font('Helvetica').fontSize(8).fillColor(C.accent)
-      .text('THE PROBLEM', PAD, y2, { characterSpacing: 2 });
+      .text('THE UNTAPPED OPPORTUNITY', PAD, y2, { characterSpacing: 2 });
     y2 += 20;
 
     // Opening line — exact copy
@@ -229,7 +223,7 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
     let y4 = PAD;
 
     doc.font('Helvetica').fontSize(8).fillColor(C.accent)
-      .text('YOUR OPPORTUNITY', PAD, y4, { characterSpacing: 2 });
+      .text('NEXT STEPS', PAD, y4, { characterSpacing: 2 });
     y4 += 20;
 
     doc.font('Helvetica-Bold').fontSize(22).fillColor(C.text)
@@ -311,7 +305,7 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
     doc.font('Helvetica-Bold').fontSize(14).fillColor(C.white)
       .text('Agba Stanley', by5X, y5 + 8);
     doc.font('Helvetica').fontSize(11).fillColor(C.accent)
-      .text('www.cozyautomation.com', by5X, y5 + 28);
+      .text('www.cozyautomation.com', by5X, y5 + 28, { link: 'https://www.cozyautomation.com', underline: false });
 
     doc.end();
     stream.on('finish', () => resolvePromise({ filePath, filename }));
