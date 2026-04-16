@@ -215,23 +215,22 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
       .text(p3after, PAD, y3, { width: CW, lineGap: 5 });
 
     // ════════════════════════════════════════════════════════════════════════
-    // PAGE 4 — What This Looks Like for {{company_name}}
+    // PAGE 4 — What This Looks Like for {{company_name}} (personalized only)
     // ════════════════════════════════════════════════════════════════════════
-    doc.addPage();
-    bgFill(doc, C.offWhite, W, H);
-
-    let y4 = PAD;
-
-    doc.font('Helvetica').fontSize(8).fillColor(C.accent)
-      .text('NEXT STEPS', PAD, y4, { characterSpacing: 2 });
-    y4 += 20;
-
-    doc.font('Helvetica-Bold').fontSize(22).fillColor(C.text)
-      .text(`What This Looks Like for ${companyName || 'Your Company'}`, PAD, y4, { width: CW });
-    y4 += doc.heightOfString(`What This Looks Like for ${companyName || 'Your Company'}`, { width: CW }) + 18;
-
     if (isPersonalized) {
-      // Personalized copy — exact from doc
+      doc.addPage();
+      bgFill(doc, C.offWhite, W, H);
+
+      let y4 = PAD;
+
+      doc.font('Helvetica').fontSize(8).fillColor(C.accent)
+        .text('NEXT STEPS', PAD, y4, { characterSpacing: 2 });
+      y4 += 20;
+
+      doc.font('Helvetica-Bold').fontSize(22).fillColor(C.text)
+        .text(`What This Looks Like for ${companyName || 'Your Company'}`, PAD, y4, { width: CW });
+      y4 += doc.heightOfString(`What This Looks Like for ${companyName || 'Your Company'}`, { width: CW }) + 18;
+
       doc.font('Helvetica').fontSize(11).fillColor(C.text)
         .text(
           'Based on what I found on your site, here\'s what your page map could look like:',
@@ -249,13 +248,6 @@ export async function generatePdf(prospect, businessInfo, outputDir) {
         .text(
           `That\'s ${totalPages} pages targeting ${totalPages} keywords your competitors aren\'t touching.`,
           PAD, y4, { width: CW }
-        );
-    } else {
-      // Generic fallback — exact from doc
-      doc.font('Helvetica').fontSize(11).fillColor(C.text)
-        .text(
-          'If you rent 4 types of equipment and can serve 5 cities, that\'s 20 pages — each one ranking for a keyword nobody in your market is going after.',
-          PAD, y4, { width: CW, lineGap: 5 }
         );
     }
 
